@@ -14,6 +14,8 @@ RUN apt-get update && apt-get -y upgrade \
   && mkdir -p /var/run/sshd \
   && sed -i.bak -e "s/^PermitRootLogin\s*.*$/PermitRootLogin yes/" /etc/ssh/sshd_config
 
+COPY assets/supervisord.conf /etc/supervisor/supervisord.conf
+
 WORKDIR /opt
 COPY assets/cc-init.sh /opt/cc-init.sh
 
