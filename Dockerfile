@@ -6,6 +6,17 @@ MAINTAINER ClassCat Co.,Ltd. <support@classcat.com>
 #   Maintained by ClassCat Co.,Ltd ( http://www.classcat.com/ )
 ########################################################################
 
+#--- HISTORY -----------------------------------------------------------
+# 04-sep-15 : fixed.
+#
+#--- TODO --------------------------------------------------------------
+# 04-sep-15 : should be run as non-root.
+#
+#--- DESCRIPTION -------------------------------------------------------
+# 04-sep-15 : python-numpy, python-matplotlib, python-nose : o.k.
+#
+#-----------------------------------------------------------------------
+
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get -y upgrade \
@@ -30,9 +41,9 @@ RUN wget http://ftp.riken.jp/net/apache/spark/spark-1.4.1/spark-1.4.1-bin-hadoop
   && tar xfz spark-1.4.1-bin-hadoop2.6.tgz \
   && ln -s spark-1.4.1-bin-hadoop2.6 spark
 
-# ipython & notebook
-RUN apt-get install -y ipython ipython-notebook
-
+# ipython & notebook & libraries
+RUN apt-get install -y ipython ipython-notebook \
+  && apt-get install -y python-scipy python-pandas python-sympy
 
 WORKDIR /opt
 COPY assets/cc-init.sh /opt/cc-init.sh
@@ -40,3 +51,6 @@ COPY assets/cc-init.sh /opt/cc-init.sh
 #EXPOSE 22 80
 
 CMD /opt/cc-init.sh; /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+
+
+### End of Dockerfile ###
