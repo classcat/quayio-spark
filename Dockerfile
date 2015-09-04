@@ -30,6 +30,9 @@ RUN wget http://ftp.riken.jp/net/apache/spark/spark-1.4.1/spark-1.4.1-bin-hadoop
   && tar xfz spark-1.4.1-bin-hadoop2.6.tgz \
   && ln -s spark-1.4.1-bin-hadoop2.6 spark
 
+# ipython & notebook
+RUN apt-get install -y ipython ipython-notebook
+
 
 WORKDIR /opt
 COPY assets/cc-init.sh /opt/cc-init.sh
