@@ -19,10 +19,10 @@ RUN apt-get update && apt-get -y upgrade \
 COPY assets/supervisord.conf /etc/supervisor/supervisord.conf
 
 # OpenJDK 8
-RUN apt-get install software-properties-common \
+RUN apt-get install -y software-properties-common \
   && apt-add-repository ppa:openjdk-r/ppa \
   && apt-get update \
-  && apt-get install openjdk-8-jdk
+  && apt-get install -y openjdk-8-jdk
 
 WORKDIR /opt
 COPY assets/cc-init.sh /opt/cc-init.sh
