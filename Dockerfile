@@ -47,7 +47,6 @@ RUN apt-get install -y ipython ipython-notebook \
   && ipython profile create ccnb
 
 WORKDIR /root
-ipython_notebook_config.py
 COPY assets/ipython_notebook_config.py /root/.ipython/profile_ccnb/ipython_notebook_config.py
 
 WORKDIR /opt
