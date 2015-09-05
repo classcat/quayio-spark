@@ -48,14 +48,12 @@ RUN apt-get install -y ipython ipython-notebook \
   && apt-get install -y python-scipy python-pandas python-sympy \
   && ipython profile create ccnb
 
-WORKDIR /root/notebook
 COPY assets/ipython_notebook_config.py /root/.ipython/profile_ccnb/ipython_notebook_config.py
 COPY assets/pwgen.py /opt/pwgen.py
 
-#WORKDIR /opt
 COPY assets/cc-init.sh /opt/cc-init.sh
 
-WORKDIR /notebook
+WORKDIR /root/notebook
 
 #EXPOSE 22 80
 
