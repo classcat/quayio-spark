@@ -7,10 +7,10 @@ MAINTAINER ClassCat Co.,Ltd. <support@classcat.com>
 ########################################################################
 
 #--- HISTORY -----------------------------------------------------------
-# 04-sep-15 : fixed.
+# 05-sep-15 : 
 #
 #--- TODO --------------------------------------------------------------
-# 04-sep-15 : should be run as non-root.
+# 04-sep-15 : should be run as non-root ?
 #
 #--- DESCRIPTION -------------------------------------------------------
 # 04-sep-15 : python-numpy, python-matplotlib, python-nose : o.k.
@@ -44,6 +44,11 @@ RUN wget http://ftp.riken.jp/net/apache/spark/spark-1.4.1/spark-1.4.1-bin-hadoop
 # ipython & notebook & libraries
 RUN apt-get install -y ipython ipython-notebook \
   && apt-get install -y python-scipy python-pandas python-sympy
+  && ipython profile create ccnb
+
+WORKDIR /root
+ipython_notebook_config.py
+COPY assets/ipython_notebook_config.py /root/.ipython/profile_ccnb/ipython_notebook_config.py
 
 WORKDIR /opt
 COPY assets/cc-init.sh /opt/cc-init.sh
