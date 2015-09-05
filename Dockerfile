@@ -43,7 +43,7 @@ RUN wget http://ftp.riken.jp/net/apache/spark/spark-1.4.1/spark-1.4.1-bin-hadoop
 
 # ipython & notebook & libraries
 RUN apt-get install -y ipython ipython-notebook \
-  && apt-get install -y python-scipy python-pandas python-sympy
+  && apt-get install -y python-scipy python-pandas python-sympy \
   && ipython profile create ccnb
 
 WORKDIR /root
