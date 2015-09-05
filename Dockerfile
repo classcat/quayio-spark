@@ -7,6 +7,7 @@ MAINTAINER ClassCat Co.,Ltd. <support@classcat.com>
 ########################################################################
 
 #--- HISTORY -----------------------------------------------------------
+# 05-sep-15 : change the workinig dir to /root/notebook.
 # 05-sep-15 : change the workinig dir to /notebook.
 # 05-sep-15 : fixed.
 #
@@ -47,7 +48,7 @@ RUN apt-get install -y ipython ipython-notebook \
   && apt-get install -y python-scipy python-pandas python-sympy \
   && ipython profile create ccnb
 
-WORKDIR /root
+WORKDIR /root/notebook
 COPY assets/ipython_notebook_config.py /root/.ipython/profile_ccnb/ipython_notebook_config.py
 COPY assets/pwgen.py /opt/pwgen.py
 
