@@ -48,6 +48,7 @@ RUN apt-get install -y ipython ipython-notebook \
 
 WORKDIR /root
 COPY assets/ipython_notebook_config.py /root/.ipython/profile_ccnb/ipython_notebook_config.py
+COPY assets/pwgen.py /opt/pwgen.py
 
 WORKDIR /opt
 COPY assets/cc-init.sh /opt/cc-init.sh

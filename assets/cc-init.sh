@@ -44,6 +44,18 @@ function put_public_key() {
 }
 
 
+################
+### NOTEBOOK ###
+################
+
+function proc_notebook () {
+  local PW_SHA1=`/opt/pwgen.py ${NOTEBOOK_PASSWD}`
+
+  sed -i.bak -e "s/^c\.NotebookApp\.password\s*= \s*.*/c.NotebookApp.password = u'${PW_SHA1}'/" \
+    /root/.ipython/profile_ccnb/ipython_notebook_config.py
+}
+
+
 ##################
 ### SUPERVISOR ###
 ##################
@@ -66,6 +78,7 @@ EOF
 init 
 change_root_password
 put_public_key
+proc_notebook
 proc_supervisor
 
 exit 0
