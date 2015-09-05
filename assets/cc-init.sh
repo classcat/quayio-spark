@@ -6,6 +6,7 @@
 ########################################################################
 
 #--- HISTORY -----------------------------------------------------------
+# 06-sep-15 : path added.
 # 05-sep-15 : ipython env added.
 # 05-sep-15 : fixed.
 #-----------------------------------------------------------------------
@@ -77,7 +78,7 @@ command=/usr/sbin/sshd -D
 
 [program:pyspark]
 command=/usr/local/spark/bin/pyspark
-environment=IPYTHON=1,IPYTHON_OPTS="notebook --profile=ccnb"
+environment=IPYTHON=1,IPYTHON_OPTS="notebook --profile=ccnb",PATH="/usr/local/spark/bin:%(ENV_PATH)s"
 EOF
 }
 
