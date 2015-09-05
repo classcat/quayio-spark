@@ -19,6 +19,7 @@ function init () {
   echo ""
 }
 
+
 ############
 ### SSHD ###
 ############
@@ -53,6 +54,9 @@ function proc_notebook () {
 
   sed -i.bak -e "s/^c\.NotebookApp\.password\s*= \s*.*/c.NotebookApp.password = u'${PW_SHA1}'/" \
     /root/.ipython/profile_ccnb/ipython_notebook_config.py
+
+  echo 'export IPYTHON=1' > /root/.bash_profile
+  echo 'export IPYTHON_OPTS="notebook --profile=ccnb"' >> /root/.bash_profile
 }
 
 
