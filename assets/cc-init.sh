@@ -6,6 +6,7 @@
 ########################################################################
 
 #--- HISTORY -----------------------------------------------------------
+# 05-sep-15 : fixed.
 #-----------------------------------------------------------------------
 
 
@@ -70,8 +71,11 @@ function proc_supervisor () {
 [program:ssh]
 command=/usr/sbin/sshd -D
 
-[program:rsyslog]
-command=/usr/sbin/rsyslogd -n
+#[program:rsyslog]
+#command=/usr/sbin/rsyslogd -n
+
+[program:pyspark]
+command=/usr/local/spark/bin/pyspark
 EOF
 }
 
