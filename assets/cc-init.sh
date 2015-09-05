@@ -6,6 +6,7 @@
 ########################################################################
 
 #--- HISTORY -----------------------------------------------------------
+# 05-sep-15 : ipython env added.
 # 05-sep-15 : fixed.
 #-----------------------------------------------------------------------
 
@@ -76,6 +77,7 @@ command=/usr/sbin/sshd -D
 
 [program:pyspark]
 command=/usr/local/spark/bin/pyspark
+environment=IPYTHON=1,IPYTHON_OPTS="notebook --profile=ccnb"
 EOF
 }
 
