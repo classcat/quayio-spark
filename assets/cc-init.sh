@@ -6,6 +6,8 @@
 ########################################################################
 
 #--- HISTORY -----------------------------------------------------------
+# 06-sep-15 : log4j.properties
+# 06-sep-15 : env path removed, instead added path into root/.bash_profile.
 # 06-sep-15 : path added.
 # 05-sep-15 : ipython env added.
 # 05-sep-15 : fixed.
@@ -48,6 +50,20 @@ function put_public_key() {
 }
 
 
+#############
+### SPARK ###
+#############
+
+function proc_spark () {
+  cp -p /usr/local/spark/conf/log4j.properties.template /usr/local/spark/conf/log4j.properties
+
+  # log4j.rootCategory=INFO, console
+  sed -i.bak -e "s/log4j\.rootCategory\s*=.*/log4j.rootCategory=WARN, console/" /usr/local/spark/conf/log4j.properties
+
+  echo 'export PATH=/usr/local/spark/bin:$PATH' > /root/.bash_profile
+}
+
+
 ################
 ### NOTEBOOK ###
 ################
@@ -58,7 +74,7 @@ function proc_notebook () {
   sed -i.bak -e "s/^c\.NotebookApp\.password\s*= \s*.*/c.NotebookApp.password = u'${PW_SHA1}'/" \
     /root/.ipython/profile_ccnb/ipython_notebook_config.py
 
-  echo 'export IPYTHON=1' > /root/.bash_profile
+  echo 'export IPYTHON=1' >> /root/.bash_profile
   echo 'export IPYTHON_OPTS="notebook --profile=ccnb"' >> /root/.bash_profile
 }
 
@@ -78,7 +94,8 @@ command=/usr/sbin/sshd -D
 
 [program:pyspark]
 command=/usr/local/spark/bin/pyspark
-environment=IPYTHON=1,IPYTHON_OPTS="notebook --profile=ccnb",PATH="/usr/local/spark/bin:%(ENV_PATH)s"
+environment=IPYTHON=1,IPYTHON_OPTS="notebook --profile=ccnb"
+#environment=IPYTHON=1,IPYTHON_OPTS="notebook --profile=ccnb",PATH="/usr/local/spark/bin:%(ENV_PATH)s"
 EOF
 }
 
@@ -89,6 +106,7 @@ EOF
 init 
 change_root_password
 put_public_key
+proc_spark
 proc_notebook
 proc_supervisor
 
