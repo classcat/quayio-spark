@@ -7,6 +7,7 @@ MAINTAINER ClassCat Co.,Ltd. <support@classcat.com>
 ########################################################################
 
 #--- HISTORY -----------------------------------------------------------
+# 06-sep-15 : Use 2.4 instead of 2.6.
 # 05-sep-15 : change the workinig dir to /root/notebook.
 # 05-sep-15 : change the workinig dir to /notebook.
 # 05-sep-15 : fixed.
@@ -39,9 +40,12 @@ RUN apt-get install -y software-properties-common \
 
 # Apache Spark
 WORKDIR /usr/local
-RUN wget http://ftp.riken.jp/net/apache/spark/spark-1.4.1/spark-1.4.1-bin-hadoop2.6.tgz \
-  && tar xfz spark-1.4.1-bin-hadoop2.6.tgz \
-  && ln -s spark-1.4.1-bin-hadoop2.6 spark
+RUN wget http://ftp.riken.jp/net/apache/spark/spark-1.4.1/spark-1.4.1-bin-hadoop2.4.tgz \
+  && tar xfz spark-1.4.1-bin-hadoop2.4.tgz \
+  && ln -s spark-1.4.1-bin-hadoop2.4 spark
+#RUN wget http://ftp.riken.jp/net/apache/spark/spark-1.4.1/spark-1.4.1-bin-hadoop2.6.tgz \
+#  && tar xfz spark-1.4.1-bin-hadoop2.6.tgz \
+#  && ln -s spark-1.4.1-bin-hadoop2.6 spark
 
 # ipython & notebook & libraries
 RUN apt-get install -y ipython ipython-notebook \
